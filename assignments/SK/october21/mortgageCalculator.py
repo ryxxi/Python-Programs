@@ -14,11 +14,5 @@ numerator = principal * monthlyrate * ((1 + monthlyrate) ** monthduration)
 denominator = ((1 + monthlyrate) ** monthduration) - 1
 
 monthlypayment = numerator / denominator
-roundpayment = round(monthlypayment, 2)
 
-print(f"\nThe monthly payment is ${roundpayment}\n")
-
-
-
-
-
+print(f"\nThe monthly payment is ${monthlypayment: ,.2f}\n")
