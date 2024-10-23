@@ -1,11 +1,8 @@
-principal = input("Enter how much is being borrowed, in dollars: ")
-principal = float(principal)
+principal = float(input("Enter how much is being borrowed, in dollars: "))
 
-annualratepercentage = input("Enter the annual interest rate, in %: ")
-annualratepercentage = float(annualratepercentage)
+annualratepercentage = float(input("Enter the annual interest rate, in %: "))
 
-yearduration = input("Enter the duration of the mortgage, in years: ")
-yearduration = float(yearduration)
+yearduration = float(input("Enter the duration of the mortgage, in years: "))
 
 monthlyrate = (annualratepercentage / 100) / 12
 monthduration = yearduration * 12
@@ -15,4 +12,4 @@ denominator = ((1 + monthlyrate) ** monthduration) - 1
 
 monthlypayment = numerator / denominator
 
-print(f"\nThe monthly payment is ${monthlypayment: ,.2f}\n")
+print(f"\nThe monthly payment is ${monthlypayment:,.2f}\n".replace("$ ", "$"))
