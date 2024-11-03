@@ -1,0 +1,9 @@
+number = input("Input a number to get its digit sum: ")
+sum = 0
+
+for x in number:
+
+	x= int(x)
+	sum+=x
+
+print(sum)
