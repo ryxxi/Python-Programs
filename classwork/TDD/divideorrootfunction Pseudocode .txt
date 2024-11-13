@@ -1,0 +1,6 @@
+divideorrootfunction Pseudocode
+
+1. Prompt user to input a number
+2. Collect and store as number
+3. If number % 5 == 0, return number ** 0.5
+4. Else return number % 5

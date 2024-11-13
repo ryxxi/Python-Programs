@@ -1,0 +1,11 @@
+futureinvestmentfunction Pseudocode
+
+1. Prompt user to input the principal amount
+2. Collect and store as principal
+3. Prompt user to input monthly interest
+4. Collect and store as monthly_interest
+5. Prompt user to input duration of investment, in years
+6. Collect and store as years
+7. Calculate principal * ((1 + (monthly_interest / 100)) ** (years * 12))
+8. Store as future_investment_value
+9. Return future_investment_value

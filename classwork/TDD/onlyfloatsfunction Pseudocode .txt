@@ -1,0 +1,8 @@
+onlyfloatsfunction Pseudocode
+
+1. Prompt a user to input 2 values
+2. Collect and store as input1 and input2 respectively
+3. If input1 and input2 are floats, return 2
+4. Else if input1 is float and input2 is not float, return 1
+5. Else if input1 is not float and input2 is float, return 1
+6. Else if input1 is not float and input2 is not float, return 0

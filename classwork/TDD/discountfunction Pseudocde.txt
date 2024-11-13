@@ -1,0 +1,9 @@
+discountfunction Pseudocode
+
+1. Prompt a user to input original price
+2. Collect and store as original_price
+3. Prompt a user to input discount
+4. Collect and store as discount 
+5. Calculate original_price * ((100 - discount) / 100)
+6. Store as discounted_price
+7. Return discounted_price
