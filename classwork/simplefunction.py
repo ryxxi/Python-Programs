@@ -17,7 +17,7 @@ def give_questions():
 
 		if answer == random1 + random2:
 			right_counter += 1
-o-
+
 		else:
 			wrong_counter += 1
 
