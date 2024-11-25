@@ -14,4 +14,4 @@ class TestMergeFunction(TestCase):
 		self.assertEqual(actual, expected)
         
 	def test_that_get_merge_list_is_string(self):
-		self.assertRaises(TypeError, merge_and_sort, "hello")
+		self.assertRaises(TypeError, merge_and_sort, "hello") 

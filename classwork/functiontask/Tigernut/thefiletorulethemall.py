@@ -108,6 +108,34 @@ def check_duplicates(list1, list2):
 
 		return False
 
+
+def merge_and_sort(list1, list2):
+	
+	if isinstance(list1, list) and isinstance(list2, list):
+
+		new = list1 + list2
+
+		new = sorted(new)
+
+		return new
+
+
+def capitalise(string):
+
+	if isinstance(string, list):
+
+		for value in string:
+
+			if isinstance(value, str):
+
+				continue
+
+			else: raise TypeError
+
+		return [s[0].upper() + s[1::] for s in string if isinstance(s, str)]
+	
+	raise TypeError
+
 		
 
 		

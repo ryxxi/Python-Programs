@@ -11,9 +11,3 @@ def get_sum(numbers):
 	total = single_total * (len(numbers) - 1)
 
 	return total
-	
-	
-
-numbs = [1, 2, 3, 4, 5, 7, 5, 3]
-
-print(get_sum(numbs))

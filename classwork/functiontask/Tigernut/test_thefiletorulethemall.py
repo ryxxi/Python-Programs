@@ -7,6 +7,8 @@ from palindromefunction import get_palindrome
 from listaveragefunction import get_average
 from reversestringfunction import get_reverse
 from removespacefunction import remove_space
+from mergeandsortfunction import merge_and_sort
+from capitalisestringfunction import capitalise
 
 
 class TestAnagramFunction(TestCase):
@@ -213,6 +215,48 @@ class TestDuplicatesFunction(TestCase):
 	def test_function_raises_exception_for_invalid_inputs(self):
 
 		self.assertRaises(TypeError, check_duplicates, 1, True)
+
+
+class TestMergeFunction(TestCase):
+
+	def test_that_get_sum_of_odd_function_works(self):
+		merge_and_sort([1, 2, 3], [4, 5])
+        
+	def test_that_get_merge_list_returns_correct_value(self):
+		list1 = [-12, 71, 34, 29]
+		list2 = [7, 1, 2, 3]
+		actual = merge_and_sort(list1, list2)
+		expected = [-12, 1, 2, 3, 7, 29, 34, 71]
+		self.assertEqual(actual, expected)
+        
+	def test_that_get_merge_list_is_string(self):
+		self.assertRaises(TypeError, merge_and_sort, "hello") 
+
+
+class TestCapitaliseFunction(TestCase):
+
+	def test_function_exists(self):
+
+		strings = ["hello", "nice"]
+		capitalise(strings)
+
+	def test_fuctions_returns_true(self):
+
+		strings = ["hello", "nice"]
+		actual = capitalise(strings)
+		expected = ["Hello", "Nice"]
+		self.assertEqual(actual, expected)
+
+		strings = ["Hi", "yellOw", "hOWDY"]
+		actual = capitalise(strings)
+		expected = ["Hi", "YellOw", "HOWDY"]
+		self.assertEqual(actual, expected)
+
+	def test_function_raises_exception_for_invalid_inputs(self):
+
+		mixed_list = [1.5, "nice", 3, "hello", True]
+		self.assertRaises(TypeError, capitalise, 12)
+		self.assertRaises(TypeError, capitalise, mixed_list)
 
 
 

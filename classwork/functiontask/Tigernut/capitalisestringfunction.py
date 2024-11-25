@@ -2,13 +2,14 @@ def capitalise(string):
 
 	if isinstance(string, list):
 
-		try:
+		for value in string:
 
-			return [s[0].upper() + s[1::] for s in string if isinstance(s, str)]
+			if isinstance(value, str):
 
-		except TypeError:
-	
-			raise TypeError
+				continue
 
+			else: raise TypeError
+
+		return [s[0].upper() + s[1::] for s in string if isinstance(s, str)]
 	
 	raise TypeError
