@@ -1,0 +1,20 @@
+Task Four Pseudocode
+
+1. Create a variable called correct_answers
+2. Initialise correct_answers to 0
+3. Create a variable called time_taken
+4. Initialise time_taken to 0
+5. For count in range(10)
+   i. Generate 2 random integers between 0 and 200
+   ii. Store as minuend and subtrahend respectively
+   iii. While subtrahend is greater than minuend
+      1. Assign a new random integer between 0 and 200 to subtrahend
+   iv. Prompt user give an answer to the minuend - subtrahend
+   v. Collect and store as user_answer
+   vi. If user_answer only consists of digits
+      1. Cast user_answer to type int
+      2. If user_answer == minuend - subtrahend
+         a. Increment correct_answers by 1
+
+6. Display, "You score: (correct_answers)/10"
+7. Display, "You took: x seconds"
