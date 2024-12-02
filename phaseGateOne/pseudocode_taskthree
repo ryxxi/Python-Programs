@@ -1,0 +1,13 @@
+Task Three Pseudocode
+
+1. Create a list called integers
+2. Create a variable called count
+3. Initialise count to 0
+4a. While count < 3:
+   i. Prompt user to enter an integer
+   ii. Store as integer
+   iii. If integer only consists of digits
+      1. Add integer to the end of integers
+      2. Increment count by 1
+   iv. Else, display, "Invalid input"
+5. Display integers, having been unpacked and sorted
