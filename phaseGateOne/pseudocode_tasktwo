@@ -3,8 +3,8 @@ Task Two Pseudocode
 1. Create a variable names total
 2. Initialise total to 0
 3. Prompt a user to enter an integer between 0 and 1000
-4. Store as number
-5a. If number only consists of digits
-   i. For each digit in number, increase total by digit after casting digit to int
+4. Store as integer
+5a. If integer only consists of digits
+   i. For each digit in integer, increase total by digit after casting digit to int
 b. Display "Invalid input"
 6. Display total

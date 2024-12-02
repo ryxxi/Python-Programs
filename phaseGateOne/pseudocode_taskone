@@ -1,11 +1,11 @@
 Task One Pseudocode
 
-1. Generate 2 random numbers less than 100
-2. Store first number in variable number1
-3. Store second number in variable number2
+1. Generate 2 random integers less than 100
+2. Store first integer in variable integer1
+3. Store second integer in variable integer2
 4. Prompt the user to give an answer to the sum of number1 and number2
 5. Collect user input
 6. Store as user_answer
 7a. If user_answer only consists of digits, cast it as an int
-   i. Display result of the expression user_answer == number1 + number2
+   i. Display result of the expression user_answer == integer1 + integer2
 b. Else, display "False"

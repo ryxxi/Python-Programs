@@ -1,8 +1,10 @@
 total = 0
-number = input("Enter an integer between 0 and 1000: ")
-if number.isdigit:
-    for digit in number:
+integer = input("Enter an integer between 0 and 1000: ")
+if integer.isdigit:
+    for digit in integer:
         total += int(digit)
+else:
+    print("Invalid input")
 
 print(total)
     
