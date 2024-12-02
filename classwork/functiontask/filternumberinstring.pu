@@ -1,0 +1,5 @@
+def filternumbersin(string):
+
+	return list(map(lambda x: int(x), filter(lambda x: x.isdigit(), string)))
+
+print(filternumbersin("1234fgd567hn89"))
