@@ -1,0 +1,59 @@
+Task Five Pseudocode
+
+1. Create 2 variables called current_day and future_day
+2. Initialise both of them to an empty String
+3. Define function get_current_day with parameter day
+   a. Create a match case for day
+      i. Case 0: current_day = "Sunday"
+      ii. Case 1: current_day = "Monday"
+      iii. Case 2: current_day = "Tuesday"
+      iv. Case 3: current_day = "Wednesday"
+      v. Case 4: current_day = "Thursday"
+      vi. Case 5: current_day = "Friday"
+      vii. Case 6: current_day = "Saturday"
+   b. return current_day
+4. Define function get_future_day with parameter day
+   if day > 6, assign the remainder of day % 7 to day
+   b. Create a match case for day
+      i. Case 0: current_day = "Sunday"
+      ii. Case 1: current_day = "Monday"
+      iii. Case 2: current_day = "Tuesday"
+      iv. Case 3: current_day = "Wednesday"
+      v. Case 4: current_day = "Thursday"
+      vi. Case 5: current_day = "Friday"
+      vii. Case 6: current_day = "Saturday"
+   c. return current_day
+5. Prompt a user to enter today's day
+6. Collect value and store as day
+7. If day only consists of digits, cast day to type int
+8. Else, display "Invalid input"
+9. Prompt a user to enter number of days since today
+10. Collect value and store as elapsed
+11. If elapsed only consists of digits, cast elapsed to type int
+12. Else, display "Invalid input"
+13. Call get_current_day with argument day
+14. Display "Today is (get_current_day(day))"
+15. Increment day by elapsed
+16. Call get_future_day with argument day
+17. Display "Future day is (get_future_day(day))"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
