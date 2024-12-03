@@ -301,7 +301,7 @@ class StudentGradeBook:
             user_choice = input("Enter 'Y' to continue viewing, or enter any other key to exit")
 
         
-    def grade_book():
+    def grade_book(self):
 
         grades = obtain_grades()
         display_all()
