@@ -1,16 +1,17 @@
 class StudentGradeBook:
-
+    
     course_name = ""
-    grades = [][]
+    grades = []
     students = 0
     exams = 0
-
-    def StudentGradeBook(self, String courseName, int students, int exams):
-
-	self.courseName = courseName
-	self.students = students
-	self.exams = exams
-	self.grades = [students][exams]
+    
+    def __init__(self, course_name, students, exams):
+        
+        self.course_name = course_name
+        self.students = students
+        self.exams = exams
+        for _ in range(exams):
+            self.grades.append([])
 
     def get_course_name():
 
@@ -46,8 +47,9 @@ class StudentGradeBook:
                     if not is_grade_invalid(grade):
                         print("Invalid input, try again")
                         
-                grades[student][exam] = int (grade)
+                grades[student][exam].append(int (grade))
 
+        return None
 
     def print_specific_single_bars():
 
@@ -164,9 +166,9 @@ class StudentGradeBook:
         get_highest_scorer(exam)
 
         print_specific_double_bars()
-	print_specific_double_bars()
+        print_specific_double_bars()
 
-	print_specific_bar_chart()
+        print_specific_bar_chart()
 
 
     def get_student_total(student):
@@ -235,7 +237,7 @@ class StudentGradeBook:
 
             for exam in range(exams):
 
-                print(f"\t{grades[student][exam]")
+                print(f"\t{grades[student][exam]}")
 
         print("\t{get_student_total(student)}", end="")
         print("\t{get_student_mean(student)}", end="")
@@ -301,5 +303,5 @@ class StudentGradeBook:
         
     def grade_book():
 
-        grades = obtain_grades
+        grades = obtain_grades()
         display_all()

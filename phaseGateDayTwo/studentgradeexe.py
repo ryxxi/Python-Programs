@@ -1,15 +1,17 @@
-course_name = input("Input course name", end"\n")
+import studentgradefunction
+
+course_name = input("Input course name: ")
 
 students = ""
 while not students.isdigit():
-    students = input("How many students sat these exams?", end="\n")
+    students = input("How many students sat these exams?: ")
 students = int(students)
 
 exams = ""
 while not exams.isdigit():
-    exams = input("How many exams were sat?", end="\n")
+    exams = input("How many exams were sat?: ")
 exams = int(exams)
 
-run = StudentGradeBook(course_name, students, exams)
+run = studentgradefunction.StudentGradeBook(course_name, students, exams)
 
-run.grade_book
+run.grade_book()
