@@ -1,3 +1,5 @@
+import time
+
 class StudentGradeBook:
     
     course_name = ""
@@ -10,14 +12,13 @@ class StudentGradeBook:
         self.course_name = course_name
         self.students = students
         self.exams = exams
-        for _ in range(exams):
-            self.grades.append([])
+        self.grades = [[0] * exams for _ in range(students)]
 
-    def get_course_name():
+    def get_course_name(self):
 
         return self.course_name
 
-    def is_grade_invalid(grade):
+    def is_grade_valid(self, grade):
 
         if grade.isdigit():
             temp = int (grade)
@@ -25,33 +26,35 @@ class StudentGradeBook:
 
         return False
 
-    def is_exam_invalid(exam):
+    def is_exam_valid(self, exam):
 
         if exam.isdigit():
             temp = int (exam)
-            if temp >= 0 and temp <= exams: return True
+            if temp >= 1 and temp <= self.exams: return True
 
         return False
 
-    def obtain_grades():
+    def obtain_grades(self):
 
-        for student in range(students):
+        for student in range(self.students):
 
-            for exam in range(exams):
+            for exam in range(self.exams):
 
-                grade = "0"
+                while True:
 
-                while is_grade_invalid(grade):
+                    time.sleep(0.5)
+                    print("\033[H\033[2J")
 
-                    grade = input(f"Enter Student {student+1}'s grade in Exam {exam+1}", end="\n")
-                    if not is_grade_invalid(grade):
-                        print("Invalid input, try again")
+                    grade = input(f"Enter Student {student+1}'s grade in Exam {exam+1}\n")
+                    if self.is_grade_valid(grade):
+                        break
+                    print("Invalid input, try again")
                         
-                grades[student][exam].append(int (grade))
+                self.grades[student][exam] = int (grade)
 
         return None
 
-    def print_specific_single_bars():
+    def print_specific_single_bars(self):
 
         for _ in range(50):
             print("-", end="")
@@ -59,214 +62,218 @@ class StudentGradeBook:
         print()
 
 
-    def print_specific_double_bars():
+    def print_specific_double_bars(self):
 
         for _ in range(50):
-            print("+", end="")
-
-        print()
-
-
-    def print_all_single_bars():
-
-        for _ in range(80):
-            print("-", end="")
-
-        print()
-
-
-    def print_all_double_bars():
-
-        for _ in range(80):
             print("=", end="")
 
         print()
 
 
-    def get_exam_total(exam):
+    def print_all_single_bars(self):
+
+        for _ in range(60):
+            print("-", end="")
+
+        print()
+
+
+    def print_all_double_bars(self):
+
+        for _ in range(60):
+            print("=", end="")
+
+        print()
+
+
+    def get_exam_total(self, exam):
 
         total = 0
 
-        for student in range(students):
-            total += grades[student][exam-1]
+        for student in range(self.students):
+            total += self.grades[student][exam-1]
             
         return total
 
 
-    def get_exam_mean(exam):
+    def get_exam_mean(self, exam):
 
-        mean = get_exam_total(exam) / students
+        mean = self.get_exam_total(exam) / self.students
 
         return mean
     
 
-    def get_highest_scorer(exam):
+    def get_highest_scorer(self, exam):
 
-        highest_grade = grades[0][exam-1]
+        highest_grade = self.grades[0][exam-1]
         best_student = 1
 
-        for student in range(students):
+        for student in range(self.students):
 
-            if grades[student][exam-1] > highest_grade:
+            if self.grades[student][exam-1] > highest_grade:
 
-                highest_grade = grades[student][exam-1]
+                highest_grade = self.grades[student][exam-1]
                 best_student = student+1
 
         print(f"Exam {exam}'s highest grade is {highest_grade}, achieved by Student {best_student}")
 
 
-    def print_specific_bar_chart(exam):
+    def print_specific_bar_chart(self, exam):
 
         print(f"Exam {exam}'s Distribution of Results:")
-        print_specific_single_bars()
+        self.print_specific_single_bars()
 
         frequency = [0,0,0,0,0,0,0,0,0,0,0]
 
-        for student in range(students):
+        for student in range(self.students):
 
-            percentage = grades[student][exam] // 10
+            percentage = self.grades[student][exam-1] // 10
             frequency[percentage] += 1
 
         for count in range(11):
 
-            if count == 10: print(f"{100:>5}")
+            if count == 10: print(f"{100:>5}:", end=" ")
 
-            else: print(f"{count*10:0>2}-{(count*10)+9:0>2}")
+            else: print(f"{count*10:0>2}-{(count*10)+9:0>2}:", end=" ")
 
             for stars in range(frequency[count]):
 
-                print("*", end=" ")
+                print("* ", end="")
 
-    def display_specific_exam():
+            print()
 
-        user_input = "0"
-
-        while is_exam_invalid(exam):
-            user_input = input(f"Which exam's grades do you wish to view? (1 - {exams})")
-            if not is_exam_invalid(exam):
-                print("Invalid input, try again")
+    def display_specific_exam(self):
+        
+        while True:
+            user_input = input(f"Which exam's grades do you wish to view? (1 - {self.exams})\n")
+            if self.is_exam_valid(user_input):
+                break
+            print("Invalid input, try again")
 
         exam = int (user_input)
 
         print("\033[H\033[2J")
 
-        print(f"{get_course_name()}\nExam {exam}")
+        print(f"{self.get_course_name()}\nExam {exam}")
 
-        print_specific_single_bars()
+        self.print_specific_single_bars()
 
-        for student in range(students):
-            print(f"Student {student+1}: {grades[student][exam]}\n")
+        for student in range(self.students):
+            print(f"Student {student+1}: {self.grades[student][exam-1]}")
 
-        print_specific_single_bars()
-        print_specific_single_bars()
+        self.print_specific_single_bars()
+        self.print_specific_single_bars()
 
-        print(f"TOTAL Grade: {get_exam_total(exam)}")
-        print(f"TOTAL Grade: {get_exam_mean(exam):.1f}")
+        print(f"TOTAL Grade: {self.get_exam_total(exam)}")
+        print(f"TOTAL Grade: {self.get_exam_mean(exam):.1f}")
 
-        get_highest_scorer(exam)
+        self.get_highest_scorer(exam)
 
-        print_specific_double_bars()
-        print_specific_double_bars()
+        self.print_specific_double_bars()
+        self.print_specific_double_bars()
 
-        print_specific_bar_chart()
+        self.print_specific_bar_chart(exam)
 
 
-    def get_student_total(student):
-
-        total = 0
-
-        for exam in range(exams):
-
-            total += grades[student][exam]
-
-        return total
-
-    def get_student_mean(student):
-
-        mean = get_student_total(student) / exams
-
-        return mean
-
-    def get_all_total():
+    def get_student_total(self, student):
 
         total = 0
 
-        for student in range(students):
+        for exam in range(self.exams):
 
-            for exam in range(exams):
-
-                total += grades[student][exam]
+            total += self.grades[student][exam]
 
         return total
 
-    def get_all_mean():
+    def get_student_mean(self, student):
 
-        mean = get_all_total / (students * exams)
+        mean = self.get_student_total(student) / self.exams
 
         return mean
 
-    def print_all_bar_chart():
+    def get_all_total(self):
+
+        total = 0
+
+        for student in range(self.students):
+
+            for exam in range(self.exams):
+
+                total += self.grades[student][exam]
+
+        return total
+
+    def get_all_mean(self):
+
+        mean = self.get_all_total() / (self.students * self.exams)
+
+        return mean
+
+    def print_all_bar_chart(self):
 
         print(f"Overall Distribution of Results:")
-        print_specific_single_bars()
+        self.print_all_single_bars()
 
         frequency = [0,0,0,0,0,0,0,0,0,0,0]
 
-        for student in range(students):
+        for student in range(self.students):
 
-            for exam in range(exams):
+            for exam in range(self.exams):
 
-                percentage = grades[student][exam] // 10
+                percentage = self.grades[student][exam] // 10
                 frequency[percentage] += 1
 
         for count in range(11):
 
-            if count == 10: print(f"{100:>5}")
+            if count == 10: print(f"{100:>5}:", end=" ")
 
-            else: print(f"{count*10:0>2}-{(count*10)+9:0>2}")
+            else: print(f"{count*10:0>2}-{(count*10)+9:0>2}:", end=" ")
 
             for stars in range(frequency[count]):
 
                 print("*", end=" ")
 
-    def display_all_students():
+            print()
 
-        for student in range(students):
+        self.print_all_double_bars()
+
+    def display_all_students(self):
+
+        for student in range(self.students):
 
             print(f"Stud{student+1}", end="")
 
-            for exam in range(exams):
+            for exam in range(self.exams):
 
-                print(f"\t{grades[student][exam]}")
+                print(f"\t{self.grades[student][exam]}", end="")
 
-        print("\t{get_student_total(student)}", end="")
-        print("\t{get_student_mean(student)}", end="")
-        print("\n")
+            print(f"\t{self.get_student_total(student)}", end="")
+            print(f"\t{self.get_student_mean(student):.1f}")
 
     
-    def display_all_exams():
+    def display_all_exams(self):
 
         print("Student", end="")
 
-        for exam in range(exams):
+        for exam in range(self.exams):
 
-            print("\tExam{exam+1}", end="")
+            print(f"\tExam{exam+1}", end="")
 
-        print("\tMean\tTotal")
+        print("\tTotal\tMean")
 
-        display_all_students()
-        print_all_single_bars()
-        print(f"TOTAL: {get_all_total()}")
-        print(f"MEAN: {get_all_mean()}")
+        self.display_all_students()
+        self.print_all_single_bars()
+        print(f"TOTAL: {self.get_all_total()}")
+        print(f"MEAN: {self.get_all_mean():.1f}")
 
-        print_all_single_bars()
-        print_all_single_bars()
+        self.print_all_double_bars()
+        self.print_all_double_bars()
 
-        print_all_bar_chart()
+        self.print_all_bar_chart()
               
 
-    def output_grades():
-
+    def output_grades(self):
+        
         print("\033[H\033[2J")
 
         user_choice = input("""
@@ -280,28 +287,32 @@ class StudentGradeBook:
         match user_choice:
 
             case "1":
-                display_specific_exam()
+                time.sleep(0.5)
+                print("\033[H\033[2J")
+                time.sleep(0.5)
+                self.display_specific_exam()
 
             case "2":
-                display_all_exams()
+                time.sleep(0.5)
+                print("\033[H\033[2J")
+                time.sleep(0.5)
+                self.display_all_exams()
 
             case _:
                 print("Invalid input, try again")
-                display_all()
 
 
-    def display_all():
+    def display_all(self):
 
-        user_choice = ""
+        while True:
 
-        while user_choice.upper() != "Y":
+            self.output_grades()
 
-            output_grades()
-
-            user_choice = input("Enter 'Y' to continue viewing, or enter any other key to exit")
+            user_choice = input("Enter 'Y' to continue viewing, or enter any other key to exit:\n")
+            if user_choice.upper() != "Y": break
 
         
     def grade_book(self):
 
-        grades = obtain_grades()
-        display_all()
+        self.obtain_grades()
+        self.display_all()
