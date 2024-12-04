@@ -117,6 +117,7 @@ class StudentGradeBook:
 
         print(f"Exam {exam}'s highest grade is {highest_grade}, achieved by Student {best_student}")
 
+        return highest_grade
 
     def print_specific_bar_chart(self, exam):
 
@@ -142,6 +143,32 @@ class StudentGradeBook:
 
             print()
 
+    def get_exam_position(self, student, exam):
+
+        student_score = self.grades[student][exam-1]
+        position = 1
+
+        for i in range(self.students):
+
+            if i != student and self.grades[i][exam-1] > student_score:
+
+                position += 1
+
+        return position
+
+    def get_overall_position(self, student):
+
+        student_mean = self.get_student_mean(student)
+        position = 1
+
+        for i in range(self.students):
+
+            if i != student and self.get_student_mean(i) > student_mean:
+
+                position += 1
+
+        return position
+
     def display_specific_exam(self):
         
         while True:
@@ -159,7 +186,7 @@ class StudentGradeBook:
         self.print_specific_single_bars()
 
         for student in range(self.students):
-            print(f"Student {student+1}: {self.grades[student][exam-1]}")
+            print(f"Student {student+1}: {self.grades[student][exam-1]}  ({self.get_exam_position(student, exam)})")
 
         self.print_specific_single_bars()
         self.print_specific_single_bars()
@@ -248,7 +275,8 @@ class StudentGradeBook:
                 print(f"\t{self.grades[student][exam]}", end="")
 
             print(f"\t{self.get_student_total(student)}", end="")
-            print(f"\t{self.get_student_mean(student):.1f}")
+            print(f"\t{self.get_student_mean(student):.1f}", end="")
+            print(f"\t{self.get_overall_position(student)}")
 
     
     def display_all_exams(self):
@@ -259,7 +287,7 @@ class StudentGradeBook:
 
             print(f"\tExam{exam+1}", end="")
 
-        print("\tTotal\tMean")
+        print("\tTotal\tMean\tPos")
 
         self.display_all_students()
         self.print_all_single_bars()
